@@ -13,7 +13,7 @@ if ENV_TOOL_PATH:
     QUARTUS_SH_PATH = ENV_TOOL_PATH
     QUARTUS_PATH = os.path.abspath(os.path.dirname(QUARTUS_SH_PATH))
 else:
-    QUARTUS_PATH = "/media/1TB/Programs/Linux/intelFPGA_lite/20.1/quartus/bin"
+    QUARTUS_PATH = None
 
 # Need to know family in addition to part number?
 # Dumb

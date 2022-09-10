@@ -74,7 +74,7 @@ def PART_SET_TOOL(part_str, allow_fail=False):
         else:
             if part_str.lower().startswith("xc"):
                 SYN_TOOL = VIVADO
-                if os.path.exists(VIVADO.VIVADO_PATH):
+                if VIVADO.VIVADO_PATH is not None and os.path.exists(VIVADO.VIVADO_PATH):
                     print("Vivado:", VIVADO.VIVADO_PATH, flush=True)
                 else:
                     raise Exception("Vivado install not found!")
@@ -84,7 +84,7 @@ def PART_SET_TOOL(part_str, allow_fail=False):
                 or part_str.lower().startswith("5c")
             ):
                 SYN_TOOL = QUARTUS
-                if os.path.exists(QUARTUS.QUARTUS_PATH):
+                if QUARTUS.QUARTUS_PATH is not None and os.path.exists(QUARTUS.QUARTUS_PATH):
                     print("Quartus:", QUARTUS.QUARTUS_PATH, flush=True)
                 else:
                     raise Exception("Quartus install not found!")
@@ -99,13 +99,13 @@ def PART_SET_TOOL(part_str, allow_fail=False):
                     SYN_TOOL = OPEN_TOOLS
                 else:
                     SYN_TOOL = DIAMOND
-                    if os.path.exists(DIAMOND.DIAMOND_PATH):
+                    if DIAMOND.DIAMOND_PATH is not None and os.path.exists(DIAMOND.DIAMOND_PATH):
                         print("Diamond:", DIAMOND.DIAMOND_PATH, flush=True)
                     else:
                         raise Exception("Diamond install not found!")
             elif part_str.upper().startswith("T8") or part_str.upper().startswith("TI"):
                 SYN_TOOL = EFINITY
-                if os.path.exists(EFINITY.EFINITY_PATH):
+                if EFINITY.EFINITY_PATH is not None and os.path.exists(EFINITY.EFINITY_PATH):
                     print("Efinity:", EFINITY.EFINITY_PATH, flush=True)
                 else:
                     raise Exception("Efinity install not found!")

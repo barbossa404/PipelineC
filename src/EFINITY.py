@@ -12,7 +12,7 @@ if ENV_TOOL_PATH:
     EFINITY_EFX_RUN_PATH = ENV_TOOL_PATH
     EFINITY_PATH = os.path.abspath(os.path.dirname(EFINITY_EFX_RUN_PATH) + "/../bin")
 else:
-    EFINITY_PATH = "/media/1TB/Programs/Linux/efinity/2021.1/bin"
+    EFINITY_PATH = None  # Tool could not be found!
 
 
 def PART_TO_FAMILY_TIMING_MODEL(part_str):

@@ -28,12 +28,13 @@ else:
     ENV_VIVADO_DIR = os.environ.get("XILINX_VIVADO")
     if ENV_VIVADO_DIR:
         VIVADO_DIR = ENV_VIVADO_DIR
+        VIVADO_PATH = VIVADO_DIR + "/bin/vivado"
     else:
-        # then fallback to hardcoded
-        VIVADO_DIR = "/media/1TB/Programs/Linux/Xilinx/Vivado/2019.2"
-    VIVADO_PATH = VIVADO_DIR + "/bin/vivado"
+        VIVADO_DIR = None  # Vivado could not be found
+        VIVADO_PATH = None
 
-FIXED_PKG_PATH = VIVADO_DIR + "/scripts/rt/data/fixed_pkg_2008.vhd"
+
+FIXED_PKG_PATH = str(VIVADO_DIR) + "/scripts/rt/data/fixed_pkg_2008.vhd"
 
 # Do full place and route for timing results
 # for "all" modules or just the "top" module

@@ -10,12 +10,14 @@ import VHDL
 from utilities import GET_TOOL_PATH, REPO_ABS_DIR
 
 VERILATOR_EXE = "verilator"
-VERILATOR_BIN_PATH = OPEN_TOOLS.OSS_CAD_SUITE_PATH + "/bin"
-
-if not os.path.exists(VERILATOR_BIN_PATH):
+if OPEN_TOOLS.OSS_CAD_SUITE_PATH is not None and os.path.exists(OPEN_TOOLS.OSS_CAD_SUITE_PATH + "/bin"):
+    VERILATOR_BIN_PATH = OPEN_TOOLS.OSS_CAD_SUITE_PATH + "/bin"
+else:
     VERILATOR_EXE_PATH = GET_TOOL_PATH(VERILATOR_EXE)
     if VERILATOR_EXE_PATH is not None:
         VERILATOR_BIN_PATH = os.path.abspath(os.path.dirname(VERILATOR_EXE_PATH))
+    else:
+        VERILATOR_BIN_PATH = None
 
 
 def DO_SIM(multimain_timing_params, parser_state, args):

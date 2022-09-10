@@ -15,8 +15,7 @@ ENV_TOOL_PATH = GET_TOOL_PATH(TOOL_EXE)
 if ENV_TOOL_PATH:
     MODELSIM_PATH = ENV_TOOL_PATH
 else:
-    # MODELSIM_PATH="/media/1TB/Programs/Linux/Modelsim/modelsim_ase/bin/vsim"
-    MODELSIM_PATH = "/media/1TB/Programs/Linux/Modelsim18.0.0.219/modelsim_ase/bin/vsim"
+    MODELSIM_PATH = None  # Tool could not be found
 
 MODEL_SIM_INI_TEXT = ""
 with open(REPO_ABS_DIR() + "/src/text/model_sim_ini.txt", "r") as ms_ini:
