@@ -60,7 +60,7 @@ using namespace std;
    
 int main()
 {{
-    cxxrtl_design::p_top top;
+    cxxrtl_design::p_{SYN.TOP_LEVEL_MODULE} top;
     top.step();
 
     for(int cycle=0; cycle<10; ++cycle)
