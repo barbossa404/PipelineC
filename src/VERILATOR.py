@@ -194,7 +194,7 @@ int main(int argc, char *argv[]) {
     sh_text = f"""
 {OPEN_TOOLS.GHDL_BIN_PATH}/ghdl -i --std=08 `cat ../vhdl_files.txt` && \
 {OPEN_TOOLS.GHDL_BIN_PATH}/ghdl -m --std=08 {SYN.TOP_LEVEL_MODULE} && \
-{OPEN_TOOLS.YOSYS_BIN_PATH}/yosys -g {m_ghdl} -p "ghdl --std=08 top; proc; opt; fsm; opt; memory; opt; write_verilog ../{SYN.TOP_LEVEL_MODULE}/{SYN.TOP_LEVEL_MODULE}.v" && \
+{OPEN_TOOLS.YOSYS_BIN_PATH}/yosys -g {m_ghdl} -p "ghdl --std=08 {SYN.TOP_LEVEL_MODULE}; proc; opt; fsm; opt; memory; opt; write_verilog ../{SYN.TOP_LEVEL_MODULE}/{SYN.TOP_LEVEL_MODULE}.v" && \
 {VERILATOR_BIN_PATH}/verilator -Wno-UNOPTFLAT -Wno-WIDTH -Wno-CASEOVERLAP --top-module {SYN.TOP_LEVEL_MODULE} -cc ../{SYN.TOP_LEVEL_MODULE}/{SYN.TOP_LEVEL_MODULE}.v -O3 --exe {main_cpp_path} -I{VERILATOR_OUT_DIR} -I{REPO_ABS_DIR()} && \
 make CXXFLAGS="-I{VERILATOR_OUT_DIR} -I{REPO_ABS_DIR()}" -j4 -C obj_dir -f Vtop.mk
 """
