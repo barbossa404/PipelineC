@@ -48,7 +48,7 @@ def DO_SIM(latency, parser_state):
     f.close()
 
     # Generate main.cpp
-    main_cpp_text = """
+    main_cpp_text = f"""
 // Default main.cpp template
 #include <iostream>
 #include "{SYN.TOP_LEVEL_MODULE}.cpp"
@@ -59,21 +59,21 @@ def DO_SIM(latency, parser_state):
 using namespace std;
    
 int main()
-{
+{{
     cxxrtl_design::p_top top;
     top.step();
 
     for(int cycle=0; cycle<10; ++cycle)
-    {
+    {{
        top.debug_eval(); // if not called, some values are optimized away
 
        top.clk.set<bool>(false); top.step();
        top.clk.set<bool>(true); top.step();
   
        cout << "See pipelinec_cxxrtl.h for names to use like top.NAME.get<bool>()" << endl;
-    }
+    }}
     return 0;
-}
+}}
 
 """
     main_cpp_path = CXXRTL_OUT_DIR + "/" + "main.cpp"

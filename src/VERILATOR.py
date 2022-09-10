@@ -196,7 +196,7 @@ int main(int argc, char *argv[]) {
 {OPEN_TOOLS.GHDL_BIN_PATH}/ghdl -m --std=08 {SYN.TOP_LEVEL_MODULE} && \
 {OPEN_TOOLS.YOSYS_BIN_PATH}/yosys -g {m_ghdl} -p "ghdl --std=08 {SYN.TOP_LEVEL_MODULE}; proc; opt; fsm; opt; memory; opt; write_verilog ../{SYN.TOP_LEVEL_MODULE}/{SYN.TOP_LEVEL_MODULE}.v" && \
 {VERILATOR_BIN_PATH}/verilator -Wno-UNOPTFLAT -Wno-WIDTH -Wno-CASEOVERLAP --top-module {SYN.TOP_LEVEL_MODULE} -cc ../{SYN.TOP_LEVEL_MODULE}/{SYN.TOP_LEVEL_MODULE}.v -O3 --exe {main_cpp_path} -I{VERILATOR_OUT_DIR} -I{REPO_ABS_DIR()} && \
-make CXXFLAGS="-I{VERILATOR_OUT_DIR} -I{REPO_ABS_DIR()}" -j4 -C obj_dir -f Vtop.mk
+make CXXFLAGS="-I{VERILATOR_OUT_DIR} -I{REPO_ABS_DIR()}" -j4 -C obj_dir -f V{SYN.TOP_LEVEL_MODULE}.mk
 """
     # --report-unoptflat
     sh_path = VERILATOR_OUT_DIR + "/" + "verilator.sh"
@@ -213,7 +213,7 @@ make CXXFLAGS="-I{VERILATOR_OUT_DIR} -I{REPO_ABS_DIR()}" -j4 -C obj_dir -f Vtop.
 
     # Run the simulation
     print("Starting simulation...", flush=True)
-    bash_cmd = "./obj_dir/Vtop"
+    bash_cmd = "./obj_dir/V" + SYN.TOP_LEVEL_MODULE
     # print(bash_cmd, flush=True)
     log_text = C_TO_LOGIC.GET_SHELL_CMD_OUTPUT(bash_cmd, cwd=VERILATOR_OUT_DIR)
     print(log_text, flush=True)
